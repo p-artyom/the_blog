@@ -1,0 +1,35 @@
+version: '3.8'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  postgres:
+    image: postgres:14
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${DB_HOST}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+  backend:
+    build: ./blog/
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - postgres
+    volumes:
+      - static:/backend_static
+  nginx:
+    build: ./nginx/
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - static:/static
+    ports:
+      - 8000:80
