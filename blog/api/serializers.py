@@ -25,9 +25,9 @@ class PostSerializer(serializers.ModelSerializer):
 
     @extend_schema_field({'example': 0})
     def get_number_likes(self, object):
-        review = Like.objects.filter(post=object.id)
-        if review.exists():
-            return review.count()
+        like = Like.objects.filter(post=object.id)
+        if like.exists():
+            return like.count()
         return 0
 
 

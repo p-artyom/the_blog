@@ -68,6 +68,12 @@ docker compose exec backend python manage.py collectstatic
 docker compose exec backend cp -r /app/collected_static/. /backend_static/static/
 ```
 
+- Для создания суперпользователя используйте команду:
+
+```text
+docker compose exec backend python manage.py createsuperuser
+```
+
 - На странице `http://127.0.0.1:8000/docs/` можно ознакомиться с документацией проекта.
 
 ## Автор

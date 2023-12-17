@@ -1,0 +1,17 @@
+<article>
+  {% if post.topic %}
+    {% for title in post.topic.all %}<a> #{{ title }}</a>{% endfor %}
+  {% endif %}
+  <ul>
+    <li>Автор: {{ post.author.get_full_name }}</li>
+    <li>Дата публикации: {{ post.created|date:"d E Y" }}</li>
+  </ul>
+  <p>{{ post.content }}</p>
+</article>
+{% for likes in like.all %}
+  {% if post.pk == likes.post %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      &#128150; {{ likes.count_like }}
+    </li>
+  {% endif %}
+{% endfor %}

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %}
-  Последние обновления на сайте
+  Последние посты на сайте
 {% endblock title %}
 {% block content %}
   <div class="container py-5">
-    <h1>Последние обновления на сайте</h1>
+    <h1>Последние посты на сайте</h1>
     {% if not page_obj %}
       <article>
         <p>Здесь пока что пусто &#128532;</p>
       </article>
     {% else %}
       {% for post in page_obj %}
-        {% include "posts/includes/post.html" with userlink=True grouplink=True %}
+        {% include "posts/includes/post.html" %}
         {% if not forloop.last %}<hr>{% endif %}
       {% endfor %}
     {% endif %}
