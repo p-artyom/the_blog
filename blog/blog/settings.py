@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'core.apps.CoreConfig',
     'posts.apps.PostsConfig',
+    'users.apps.UsersConfig',
 
     'rest_framework',
     'drf_spectacular',
@@ -114,6 +115,12 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'posts:index'
+
+STR_LENGTH_WHEN_PRINTING_MODEL = 50
+
 NUM_OBJECTS_ON_PAGE = 20
 
 REST_FRAMEWORK = {
@@ -143,5 +150,3 @@ SPECTACULAR_SETTINGS = {
         'email': 'artem38skull@yandex.ru',
     },
 }
-
-STR_LENGTH_WHEN_PRINTING_MODEL = 50
